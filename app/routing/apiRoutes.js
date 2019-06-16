@@ -14,13 +14,41 @@ module.exports = function(app) {
 
   // API POST Requests
   app.post("/api/friends", function(req, res) { 
+    let userInput = req.body;
+    // console.log('userInput = ' + JSON.stringify(userInput));
+
+    // initital value for comparison 
+    let lowestDifference = 4444;
+
+    // index with the lowest, closest difference
+    let lowestIndex = 0;
+
+    // loop through friendsArray
+    for (let i = 0; i < friends.length; i++) {
+        let tempDifference = 0;
+
+        // loop through the user's score
+        for (let j = 0; j < userInput.scores.length; j++) {
+            tempDifference += Math.abs(userInput.scores[j] - friends[i].scores[j])
+        }
+
+        // if this userscore difference is lower than the current lowest, 
+        // assign the index of the friend and reassign the lowest difference.
+        if (tempDifference < lowestDifference) {
+            lowestIndex = i;
+            lowestDifference = tempDifference;
+        }
+    }
+
+     // Add the new user to the friends object
+     friends.push(userInput);
+     // Send the matching user back to our form.
+     res.json(friends[lowestIndex]);
 
   });
 
-  // ---------------------------------------------------------------------------
   // I added this below code so you could clear out the table while working with the functionality.
   // Don"t worry about it!
-
   app.post("/api/clear", function(req, res) {
     // Empty out the arrays of data
     friends.length = 0;
