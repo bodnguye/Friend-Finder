@@ -1,7 +1,7 @@
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
 // These data sources hold arrays of information on friends
-const friends = require("../data/friends");
+const friendsArray = require("../data/friends");
 
 
  // ROUTING
@@ -9,7 +9,7 @@ module.exports = function(app) {
   
     // API GET Requests
   app.get("/api/friends", function(req, res) {
-    res.json(friends);
+    res.json(friendsArray);
   });
 
   // API POST Requests
@@ -24,12 +24,12 @@ module.exports = function(app) {
     let lowestIndex = 0;
 
     // loop through friendsArray
-    for (let i = 0; i < friends.length; i++) {
+    for (let i = 0; i < friendsArray.length; i++) {
         let tempDifference = 0;
 
         // loop through the user's score
         for (let j = 0; j < userInput.scores.length; j++) {
-            tempDifference += Math.abs(userInput.scores[j] - friends[i].scores[j])
+            tempDifference += Math.abs(userInput.scores[j] - friendsArray[i].scores[j])
         }
 
         // if this userscore difference is lower than the current lowest, 
@@ -41,9 +41,9 @@ module.exports = function(app) {
     }
 
      // Add the new user to the friends object
-     friends.push(userInput);
+     friendsArray.push(userInput);
      // Send the matching user back to our form.
-     res.json(friends[lowestIndex]);
+     res.json(friendsArray[lowestIndex]);
 
   });
 
@@ -51,7 +51,7 @@ module.exports = function(app) {
   // Don"t worry about it!
   app.post("/api/clear", function(req, res) {
     // Empty out the arrays of data
-    friends.length = 0;
+    friendsArray.length = 0;
 
     res.json({ ok: true });
   });
