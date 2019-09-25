@@ -7,8 +7,6 @@
 ## Introduction
 "FriendFinder" is a compatibility-based application -- basically a dating app. This full-stack site will take in results from your users' surveys, then compare their answers with those from other users. The app will then display the name and picture of the user with the best overall match.
 
-Link to Friend-Finder Website: `https://evening-beach-17679.herokuapp.com/`
-
 ## Technologies Used
 - Node.js
 - JavaScript
@@ -18,3 +16,6 @@ Link to Friend-Finder Website: `https://evening-beach-17679.herokuapp.com/`
 - Node Packages:
     - express
     - path
+    
+## Demo
+[Click here to Demo!](https://evening-beach-17679.herokuapp.com/)
